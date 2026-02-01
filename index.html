@@ -3,7 +3,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arch Linux 软件管理与 .deb/.rpm 解决方案</title>
-  <style>
+    <style>
     :root {
       --bg: #0f1117;
       --panel: #161b22;
@@ -27,6 +27,10 @@ body {
   display: flex;
 }
 
+.menu-btn {
+  display: none;
+}
+
 /* Sidebar */
 .sidebar {
   width: 280px;
@@ -37,6 +41,7 @@ body {
   top: 0;
   bottom: 0;
   overflow-y: auto;
+  z-index: 998;
 }
 
 .sidebar h2 {
@@ -50,58 +55,41 @@ body {
   display: block;
   color: var(--text);
   text-decoration: none;
-  padding: 8px 12px;
-  margin: 4px 0;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 10px 14px;
+  margin: 6px 0;
+  border-radius: 8px;
+  font-size: 15px;
 }
 
 .sidebar a:hover {
-  background: rgba(88, 166, 255, 0.15);
+  background: rgba(88, 166, 255, 0.18);
   color: var(--accent);
 }
 
-/* Main content */
 .content {
   margin-left: 280px;
   padding: 40px 60px;
   max-width: 1100px;
+  width: 100%;
 }
 
 h1, h2, h3 {
   color: var(--accent);
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
+h1 { font-size: 32px; }
+h2 { margin-top: 60px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
 
-h2 {
-  margin-top: 60px;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 6px;
-}
+p, li { line-height: 1.75; }
 
-p {
-  line-height: 1.7;
-  color: var(--text);
-}
-
-ul, ol {
-  line-height: 1.8;
-}
-
-/* Code blocks */
 pre {
   background: var(--code-bg);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 16px 18px;
   overflow-x: auto;
   font-size: 14px;
   margin: 18px 0;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.02), 0 8px 20px rgba(0,0,0,0.4);
 }
 
 code {
@@ -115,7 +103,6 @@ code {
   padding: 14px 16px;
   border-radius: 6px;
   margin: 16px 0;
-  color: var(--text);
 }
 
 .block {
@@ -134,52 +121,17 @@ footer {
   color: var(--muted);
   font-size: 13px;
 }
-  /* Mobile responsive */
+
+/* Mobile */
 @media (max-width: 900px) {
-  body {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: auto;
-    z-index: 999;
-    display: none;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .sidebar.active {
-    display: block;
-  }
-
-  .content {
-    margin-left: 0;
-    padding: 20px 16px 40px 16px;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  pre {
-    font-size: 13px;
-    padding: 12px;
-  }
+  body { flex-direction: column; }
 
   .menu-btn {
+    display: block;
     position: fixed;
-    top: 14px;
-    right: 14px;
-    z-index: 1000;
+    top: 12px;
+    right: 12px;
+    z-index: 1001;
     background: var(--panel);
     color: var(--text);
     border: 1px solid var(--border);
@@ -188,6 +140,27 @@ footer {
     font-size: 14px;
     cursor: pointer;
   }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 1000;
+  }
+
+  .sidebar.active { display: block; }
+
+  .content {
+    margin-left: 0;
+    padding: 20px 14px 40px 14px;
+  }
+
+  h1 { font-size: 24px; }
+  h2 { font-size: 20px; }
+  pre { font-size: 13px; }
 }
 
   </style>
@@ -304,4 +277,14 @@ AUR → 打包者处理 Chaotic-AUR → 已编译 Flatpak → 沙箱隔离 debta
      它将成为 <b>Linux 生态中软件最多、最强大的发行版</b>。
    </div>
  </section> <footer>
-   © 2026 Arch Software Ecosystem Guide · Designed for reading &
+   © 2026 Arch Software Ecosystem Guide · Designed for reading & documentation
+ </footer>
+
+  </main>
+    <script>
+    function toggleMenu() {
+      const sb = document.querySelector('.sidebar');
+      sb.classList.toggle('active');
+    }document.querySelectorAll('.sidebar a').forEach(a => {
+  a.addEventListener('click', () => {
+    if (wi
