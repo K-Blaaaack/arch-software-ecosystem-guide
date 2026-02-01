@@ -162,11 +162,23 @@ footer {
   h2 { font-size: 20px; }
   pre { font-size: 13px; }
 }
+  .sidebar-mask{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:999;
+}
+
+@media (max-width:900px){
+  .sidebar-mask.active{display:block;}
+}
 
   </style>
 </head>
 <body>
   <button class="menu-btn" onclick="toggleMenu()">目录</button>
+    <div class="sidebar-mask" onclick="toggleMenu()"></div>
   <aside class="sidebar">
     <h2>目录</h2>
     <a href="#intro">概述</a>
@@ -281,10 +293,4 @@ AUR → 打包者处理 Chaotic-AUR → 已编译 Flatpak → 沙箱隔离 debta
  </footer>
 
   </main>
-    <script>
-    function toggleMenu() {
-      const sb = document.querySelector('.sidebar');
-      sb.classList.toggle('active');
-    }document.querySelectorAll('.sidebar a').forEach(a => {
-  a.addEventListener('click', () => {
-    if (wi
+  
