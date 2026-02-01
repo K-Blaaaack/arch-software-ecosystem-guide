@@ -278,4 +278,71 @@ sudo apt install ./xxx.deb</code></pre>
 
     <section id="deps">
       <h2>依赖处理逻辑</h2>
+      <pre><code>官方仓库 → pacman
+AUR → 打包者处理
+Chaotic-AUR → 已编译
+Flatpak → 沙箱隔离
+debtap → 自动映射 + 手动确认
+distrobox → 容器系统自行处理</code></pre>
+    </section>
+
+    <section id="combo">
+      <h2>推荐系统组合</h2>
+      <pre><code>Arch Linux
+├─ pacman
+├─ AUR + yay
+├─ Chaotic-AUR
+├─ Flatpak
+├─ debtap
+└─ distrobox</code></pre>
+    </section>
+
+    <section id="workflow">
+      <h2>使用流程总览</h2>
+      <pre><code>1. pacman 搜索
+2. yay 搜索（AUR）
+3. Chaotic-AUR
+4. debtap
+5. distrobox</code></pre>
+    </section>
+
+    <section id="summary">
+      <h2>总结</h2>
+      <div class="tip">
+        Arch Linux 并不是软件少，而是 <b>把自由、纯净、可控放在第一位</b>。
+        当你正确使用 AUR + Chaotic-AUR + Flatpak + 容器后，
+        它将成为 <b>Linux 生态中软件最多、最强大的发行版</b>。
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Arch Software Ecosystem Guide · Designed for reading & documentation
+    </footer>
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarMask = document.getElementById('sidebarMask');
+
+    function toggleMenu() {
+      sidebar.classList.toggle('active');
+      sidebarMask.classList.toggle('active');
+      menuBtn.textContent = sidebar.classList.contains('active') ? '关闭' : '目录';
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+    sidebarMask.addEventListener('click', toggleMenu);
+
+    // 点击链接自动关闭菜单
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        sidebarMask.classList.remove('active');
+        menuBtn.textContent = '目录';
+      });
+    });
+  </script>
+</body>
+</html>
      
